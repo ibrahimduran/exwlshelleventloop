@@ -7,6 +7,7 @@ use std::sync::Arc;
 #[derive(Debug, PartialEq, Eq, Clone, Copy, Default)]
 pub struct IcedXdgWindowSettings {
     pub size: Option<(u32, u32)>,
+    pub decorations: Option<bool>,
 }
 
 impl From<IcedXdgWindowSettings> for NewXdgWindowSettings {
@@ -14,6 +15,7 @@ impl From<IcedXdgWindowSettings> for NewXdgWindowSettings {
         NewXdgWindowSettings {
             title: None,
             size: val.size,
+            decorations: val.decorations,
         }
     }
 }

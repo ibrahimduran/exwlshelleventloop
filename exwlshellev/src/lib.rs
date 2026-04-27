@@ -2913,7 +2913,11 @@ impl<T: 'static> WindowState<T> {
                                 );
                             }
                             ReturnData::NewXdgBase((
-                                NewXdgWindowSettings { title, size },
+                                NewXdgWindowSettings {
+                                    title,
+                                    size,
+                                    decorations,
+                                },
                                 id,
                                 info,
                             )) => {
@@ -2924,7 +2928,9 @@ impl<T: 'static> WindowState<T> {
                                 toplevel.set_title(title.unwrap_or("".to_owned()));
 
                                 let decoration =
-                                    if let Some(decoration_manager) = &zxdg_decoration_manager {
+                                    if decorations.is_none_or(|d| d == true)
+                                        && let Some(decoration_manager) = &zxdg_decoration_manager
+                                    {
                                         let decoration = decoration_manager
                                             .get_toplevel_decoration(&toplevel, &qh, ());
                                         use zxdg_toplevel_decoration_v1::Mode;

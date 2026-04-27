@@ -114,9 +114,9 @@ pub struct NewPopUpSettings {
 /// be used to create a new popup
 #[derive(Debug, PartialEq, Eq, Clone, Default)]
 pub struct NewXdgWindowSettings {
-    /// the size of the popup
     pub title: Option<String>,
     pub size: Option<(u32, u32)>,
+    pub decorations: Option<bool>,
 }
 
 /// input panel settings to create a new input panel surface
